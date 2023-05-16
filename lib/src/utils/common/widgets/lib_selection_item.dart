@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class LibSelectionItem extends StatefulWidget {
   final String imageSrc;
   final String title;
   final String route;
+  final List<ItemModel> data;
 
   const LibSelectionItem({
     required this.imageSrc,
     required this.title,
     required this.route,
+    required this.data,
     super.key,
   });
 
@@ -24,7 +27,10 @@ class _LibSelectionItemState extends State<LibSelectionItem> {
         highlightColor: Colors.amber.withOpacity(0.2),
         splashColor: Colors.amber,
         onTap: () {
-          Navigator.of(context).pushNamed(widget.route);
+          Navigator.of(context).pushNamed(
+            widget.route,
+            arguments: widget.data,
+          );
         },
         child: Stack(
           children: [
