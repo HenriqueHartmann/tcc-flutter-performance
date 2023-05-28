@@ -5,7 +5,7 @@ class LibSelectionItem extends StatefulWidget {
   final String imageSrc;
   final String title;
   final String route;
-  final List<ItemModel> data;
+  final ItemListModel data;
 
   const LibSelectionItem({
     required this.imageSrc,
