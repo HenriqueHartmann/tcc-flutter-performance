@@ -163,6 +163,42 @@ class ItemListModel {
       });
     }
   }
+
+    void changeAllTitleFontSizes(bool value) {
+    if (value) {
+      _data.forEach((element) {
+        element.setTitleFontSize(value: 32.0);
+      });
+    } else {
+      _data.forEach((element) {
+        element.setTitleFontSize();
+      });
+    }
+  }
+
+    void changeAllDescriptionFontColor(bool value) {
+    if (value) {
+      _data.forEach((element) {
+        element.setDescriptionFontColor(value: Colors.red);
+      });
+    } else {
+      _data.forEach((element) {
+        element.setDescriptionFontColor();
+      });
+    }
+  }
+
+  void changeAllDescriptionFontSizes(bool value) {
+    if (value) {
+      _data.forEach((element) {
+        element.setDescriptionFontSize(value: 24.0);
+      });
+    } else {
+      _data.forEach((element) {
+        element.setDescriptionFontSize();
+      });
+    }
+  }
 }
 
 class ItemClient {
