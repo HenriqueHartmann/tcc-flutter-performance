@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
 
 class MainProvider extends StatefulWidget {
   const MainProvider({super.key});
@@ -11,14 +12,7 @@ class _MainProviderState extends State<MainProvider> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'PROVIDER',
-          style: TextStyle(color: Colors.black87),
-        ),
-      ),
+      appBar: AppBarWidget(title: 'Provider',),
       body: Container(),
     );
   }

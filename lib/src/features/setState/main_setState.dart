@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget.dart';
+import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget_without_text.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class MainSetState extends StatefulWidget {
@@ -27,14 +29,8 @@ class _MainSetStateState extends State<MainSetState> {
     itemList = ModalRoute.of(context)!.settings.arguments as ItemListModel;
 
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'SetState',
-          style: TextStyle(color: Colors.black87),
-        ),
-        iconTheme: IconThemeData(color: Colors.black),
+      appBar: AppBarWidget(
+        title: 'SetState',
       ),
       body: Container(
         margin: const EdgeInsets.all(16.0),
@@ -126,6 +122,7 @@ class _MainSetStateState extends State<MainSetState> {
                 itemCount: itemList.getData().length,
                 itemBuilder: (context, index) {
                   return Card(
+                    color: itemList.getDataByIndex(index).getCardBackgroundColor(),
                     child: Column(
                       children: [
                         ListTile(
@@ -165,6 +162,14 @@ class _MainSetStateState extends State<MainSetState> {
                                   .getDescriptionFontColor(),
                             ),
                           ),
+                          trailing: SwitchWidgetWithoutText(
+                            switchValue: itemList.getDataByIndex(index).isCardActivated(), onChanged: (value) {
+                              setState(() {
+                                itemList.getDataByIndex(index).changeBackgroundCardColor();
+                              });
+                            },
+                            
+                          )
                         ),
                       ],
                     ),

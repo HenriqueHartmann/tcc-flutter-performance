@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
 
 class MainBloc extends StatefulWidget {
   const MainBloc({super.key});
@@ -11,14 +12,7 @@ class _MainBlocState extends State<MainBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'BLOC',
-          style: TextStyle(color: Colors.black87),
-        ),
-      ),
+      appBar: AppBarWidget(title: 'BLoC',),
       body: Container(),
     );
   }

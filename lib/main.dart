@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tcc_performance_app/src/features/bloc/main_bloc.dart';
 import 'package:tcc_performance_app/src/features/provider/main_provider.dart';
 import 'package:tcc_performance_app/src/features/setState/main_setState.dart';
+import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/lib_selection_item.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
@@ -41,14 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'Escolha uma biblioteca',
-          style: TextStyle(color: Colors.black87),
-        ),
-      ),
+      appBar: AppBarWidget(title: 'Escolha uma biblioteca',),
       body: Container(
         margin: const EdgeInsets.all(16.0),
         child: Column(
