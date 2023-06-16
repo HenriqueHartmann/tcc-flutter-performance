@@ -116,15 +116,27 @@ class ItemModel {
   // SK4: Change description font size
   // SK5: Change card background color
 
-  bool isTextColorActivated() {
+  bool isTitleTextColorActivated() {
     return getTitleFontColor() == Colors.red;
   }
 
   void changeTitleFontColor() {
-    if (!isTextColorActivated()) {
+    if (!isTitleTextColorActivated()) {
       setTitleFontColor(value: Colors.red);
     } else {
       setTitleFontColor();
+    }
+  }
+
+  bool isDescriptionTextColorActivated() {
+    return getDescriptionFontColor() == Colors.red;
+  }
+
+    void changeDescriptionFontColor() {
+    if (!isDescriptionTextColorActivated()) {
+      setDescriptionFontColor(value: Colors.red);
+    } else {
+      setDescriptionFontColor();
     }
   }
 
@@ -212,6 +224,18 @@ class ItemListModel {
     } else {
       _data.forEach((element) {
         element.setDescriptionFontSize();
+      });
+    }
+  }
+
+    void changeAllCardBackgroundColor(bool value) {
+    if (value) {
+      _data.forEach((element) {
+        element.setCardBackgroundColor(value: Colors.amber.withOpacity(0.5));
+      });
+    } else {
+      _data.forEach((element) {
+        element.setCardBackgroundColor();
       });
     }
   }
