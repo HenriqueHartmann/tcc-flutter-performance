@@ -144,7 +144,7 @@ class ItemModel {
     return getCardBackgroundColor() == Colors.amber.withOpacity(0.5);
   }
 
-  void changeBackgroundCardColor() {
+  void changeCardBackgroundColor() {
     if (!isCardActivated()) {
       setCardBackgroundColor(value: Colors.amber.withOpacity(0.5));
     } else {
@@ -228,7 +228,7 @@ class ItemListModel {
     }
   }
 
-    void changeAllCardBackgroundColor(bool value) {
+    void changeAllCardBackgroundColors(bool value) {
     if (value) {
       _data.forEach((element) {
         element.setCardBackgroundColor(value: Colors.amber.withOpacity(0.5));

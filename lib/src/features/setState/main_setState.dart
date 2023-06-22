@@ -55,7 +55,7 @@ class _MainSetStateState extends State<MainSetState> {
               onChanged: (value) {
                 setState(() {
                   allCardsBackgroundColorSwitch = !allCardsBackgroundColorSwitch;
-                  itemList.changeAllCardBackgroundColor(allCardsBackgroundColorSwitch);
+                  itemList.changeAllCardBackgroundColors(allCardsBackgroundColorSwitch);
                 });
               },
             ),
@@ -212,7 +212,7 @@ class _MainSetStateState extends State<MainSetState> {
                                 setState(() {
                                   itemList
                                       .getDataByIndex(index)
-                                      .changeBackgroundCardColor();
+                                      .changeCardBackgroundColor();
                                 });
                               },
                             )),
