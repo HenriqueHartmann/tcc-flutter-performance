@@ -13,7 +13,7 @@ class DescriptionBloc extends Cubit<DescriptionState> {
   void changeAllColors() {
     _getState()
         .getData()
-        .changeAllDescriptionFontColor(_getState().getSwitchAllColors());
+        .changeAllDescriptionFontColor(!_getState().getSwitchAllColors());
 
     emit(_getState().copyWith(
         switchAllColors: !_getState().getSwitchAllColors(),
@@ -26,5 +26,15 @@ class DescriptionBloc extends Cubit<DescriptionState> {
         .changeDescriptionFontColor();
 
     emit(_getState().copyWith(data: _getState().getData()));
+  }
+
+    void changeAllFontSizes() {
+    _getState()
+        .getData()
+        .changeAllDescriptionFontSizes(!_getState().getSwitchAllFontSize());
+
+    emit(_getState().copyWith(
+        switchAllFontSize: !_getState().getSwitchAllFontSize(),
+        data: _getState().getData()));
   }
 }

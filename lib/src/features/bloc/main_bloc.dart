@@ -104,6 +104,42 @@ class _MainBlocState extends State<MainBloc> {
                     ],
                   ),
                 ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Description',
+                        textScaleFactor: 1.2,
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      BlocBuilder<DescriptionBloc, DescriptionState>(
+                          bloc: descriptionBloc,
+                          builder: (context, state) {
+                            return Column(
+                              children: [
+                                SwitchWidget(
+                                  title: 'Change colors',
+                                  switchValue: state.getSwitchAllColors(),
+                                  onChanged: (value) {
+                                    descriptionBloc.changeAllColors();
+                                  },
+                                ),
+                                SwitchWidget(
+                                  title: 'Change font size',
+                                  switchValue: state.getSwitchAllFontSize(),
+                                  onChanged: (value) {
+                                    descriptionBloc.changeAllFontSizes();
+                                  },
+                                ),
+                              ],
+                            );
+                          }),
+                    ],
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 16.0),
