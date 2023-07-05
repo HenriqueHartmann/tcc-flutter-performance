@@ -27,4 +27,14 @@ class TitleBloc extends Cubit<TitleState> {
 
     emit(_getState().copyWith(data: _getState().getData()));
   }
+
+  void changeAllFontSizes() {
+    _getState()
+        .getData()
+        .changeAllTitleFontSizes(!_getState().getSwitchAllFontSize());
+
+    emit(_getState().copyWith(
+        switchAllFontSize: !_getState().getSwitchAllFontSize(),
+        data: _getState().getData()));
+  }
 }

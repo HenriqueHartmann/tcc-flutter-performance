@@ -54,8 +54,10 @@ class _MainSetStateState extends State<MainSetState> {
               switchValue: allCardsBackgroundColorSwitch,
               onChanged: (value) {
                 setState(() {
-                  allCardsBackgroundColorSwitch = !allCardsBackgroundColorSwitch;
-                  itemList.changeAllCardBackgroundColors(allCardsBackgroundColorSwitch);
+                  allCardsBackgroundColorSwitch =
+                      !allCardsBackgroundColorSwitch;
+                  itemList.changeAllCardBackgroundColors(
+                      allCardsBackgroundColorSwitch);
                 });
               },
             ),
@@ -150,72 +152,71 @@ class _MainSetStateState extends State<MainSetState> {
                     child: Column(
                       children: [
                         ListTile(
-                            title: StatefulBuilder(
-                              builder: (context, setStateTitle) {
-                                log('\nINDEX: $index BUILDED');
-                                return InkWell(
-                                  onTap: () {
-                                    setStateTitle(
-                                      () {
-                                        itemList
-                                            .getDataByIndex(index)
-                                            .changeTitleFontColor();
-                                      },
-                                    );
-                                  },
-                                  child: Text(
-                                    itemList.getDataByIndex(index).getTitle(),
-                                    style: TextStyle(
-                                      fontSize: itemList
-                                          .getDataByIndex(index)
-                                          .getTitleFontSize(),
-                                      color: itemList
-                                          .getDataByIndex(index)
-                                          .getTitleFontColor(),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                            subtitle: StatefulBuilder(
-                                builder: (context, setStateDescription) {
+                          title: StatefulBuilder(
+                            builder: (context, setStateTitle) {
+                              log('\nINDEX: $index BUILDED');
                               return InkWell(
                                 onTap: () {
-                                  setStateDescription(
+                                  setStateTitle(
                                     () {
                                       itemList
                                           .getDataByIndex(index)
-                                          .changeDescriptionFontColor();
+                                          .changeTitleFontColor();
                                     },
                                   );
                                 },
                                 child: Text(
-                                  itemList
-                                      .getDataByIndex(index)
-                                      .getDescription(),
+                                  itemList.getDataByIndex(index).getTitle(),
                                   style: TextStyle(
                                     fontSize: itemList
                                         .getDataByIndex(index)
-                                        .getDescriptionFontSize(),
+                                        .getTitleFontSize(),
                                     color: itemList
                                         .getDataByIndex(index)
-                                        .getDescriptionFontColor(),
+                                        .getTitleFontColor(),
                                   ),
                                 ),
                               );
-                            }),
-                            trailing: SwitchWidgetWithoutText(
-                              switchValue: itemList
-                                  .getDataByIndex(index)
-                                  .isCardActivated(),
-                              onChanged: (value) {
-                                setState(() {
-                                  itemList
-                                      .getDataByIndex(index)
-                                      .changeCardBackgroundColor();
-                                });
+                            },
+                          ),
+                          subtitle: StatefulBuilder(
+                              builder: (context, setStateDescription) {
+                            return InkWell(
+                              onTap: () {
+                                setStateDescription(
+                                  () {
+                                    itemList
+                                        .getDataByIndex(index)
+                                        .changeDescriptionFontColor();
+                                  },
+                                );
                               },
-                            )),
+                              child: Text(
+                                itemList.getDataByIndex(index).getDescription(),
+                                style: TextStyle(
+                                  fontSize: itemList
+                                      .getDataByIndex(index)
+                                      .getDescriptionFontSize(),
+                                  color: itemList
+                                      .getDataByIndex(index)
+                                      .getDescriptionFontColor(),
+                                ),
+                              ),
+                            );
+                          }),
+                          trailing: SwitchWidgetWithoutText(
+                            switchValue: itemList
+                                .getDataByIndex(index)
+                                .isCardActivated(),
+                            onChanged: (value) {
+                              setState(() {
+                                itemList
+                                    .getDataByIndex(index)
+                                    .changeCardBackgroundColor();
+                              });
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   );

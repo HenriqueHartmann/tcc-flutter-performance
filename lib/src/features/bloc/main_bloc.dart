@@ -10,6 +10,7 @@ import 'package:tcc_performance_app/src/features/bloc/title_bloc.dart';
 import 'package:tcc_performance_app/src/features/bloc/title_state.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget.dart';
+import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget_without_text.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class MainBloc extends StatefulWidget {
@@ -80,12 +81,23 @@ class _MainBlocState extends State<MainBloc> {
                       BlocBuilder<TitleBloc, TitleState>(
                         bloc: titleBloc,
                         builder: (context, state) {
-                          return SwitchWidget(
-                            title: 'Change colors',
-                            switchValue: state.getSwitchAllColors(),
-                            onChanged: (value) {
-                              titleBloc.changeAllColors();
-                            },
+                          return Column(
+                            children: [
+                              SwitchWidget(
+                                title: 'Change colors',
+                                switchValue: state.getSwitchAllColors(),
+                                onChanged: (value) {
+                                  titleBloc.changeAllColors();
+                                },
+                              ),
+                              SwitchWidget(
+                                title: 'Change font size',
+                                switchValue: state.getSwitchAllFontSize(),
+                                onChanged: (value) {
+                                  titleBloc.changeAllFontSizes();
+                                },
+                              ),
+                            ],
                           );
                         },
                       ),
@@ -101,70 +113,84 @@ class _MainBlocState extends State<MainBloc> {
                 itemCount: itemList.getData().length,
                 itemBuilder: (context, index) {
                   return BlocBuilder<CardBloc, CardState>(
-                      bloc: cardBloc,
-                      builder: (context, cardState) {
-                        return Card(
-                          color: cardState
-                              .getDataItemByIndex(index: index)
-                              .getCardBackgroundColor(),
-                          child: Column(
-                            children: [
-                              ListTile(
-                                title: BlocBuilder<TitleBloc, TitleState>(
-                                  bloc: titleBloc,
-                                  builder: (context, stateTitle) {
-                                    log('\nINDEX: $index BUILDED');
-                                    return InkWell(
-                                      onTap: () {
-                                        titleBloc.changeColorByIndex(
-                                            index: index);
-                                      },
-                                      child: Text(
-                                        stateTitle
+                    bloc: cardBloc,
+                    builder: (context, cardState) {
+                      return Card(
+                        color: cardState
+                            .getDataItemByIndex(index: index)
+                            .getCardBackgroundColor(),
+                        child: Column(
+                          children: [
+                            ListTile(
+                              title: BlocBuilder<TitleBloc, TitleState>(
+                                bloc: titleBloc,
+                                builder: (context, stateTitle) {
+                                  log('\nINDEX: $index BUILDED');
+                                  return InkWell(
+                                    onTap: () {
+                                      titleBloc.changeColorByIndex(
+                                          index: index);
+                                    },
+                                    child: Text(
+                                      stateTitle
+                                          .getDataItemByIndex(index: index)
+                                          .getTitle(),
+                                      style: TextStyle(
+                                        fontSize: stateTitle
                                             .getDataItemByIndex(index: index)
-                                            .getTitle(),
-                                        style: TextStyle(
-                                          fontSize: stateTitle
-                                              .getDataItemByIndex(index: index)
-                                              .getTitleFontSize(),
-                                          color: stateTitle
-                                              .getDataItemByIndex(index: index)
-                                              .getTitleFontColor(),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                subtitle: BlocBuilder<DescriptionBloc,
-                                    DescriptionState>(
-                                  bloc: descriptionBloc,
-                                  builder: (context, stateDescription) {
-                                    return InkWell(
-                                      onTap: () {
-                                        descriptionBloc.changeColorByIndex(
-                                            index: index);
-                                      },
-                                      child: Text(
-                                        stateDescription
+                                            .getTitleFontSize(),
+                                        color: stateTitle
                                             .getDataItemByIndex(index: index)
-                                            .getDescription(),
-                                        style: TextStyle(
-                                          fontSize: stateDescription
-                                              .getDataItemByIndex(index: index)
-                                              .getDescriptionFontSize(),
-                                          color: stateDescription
-                                              .getDataItemByIndex(index: index)
-                                              .getDescriptionFontColor(),
-                                        ),
+                                            .getTitleFontColor(),
                                       ),
-                                    );
-                                  },
-                                ),
+                                    ),
+                                  );
+                                },
                               ),
-                            ],
-                          ),
-                        );
-                      });
+                              subtitle: BlocBuilder<DescriptionBloc,
+                                  DescriptionState>(
+                                bloc: descriptionBloc,
+                                builder: (context, stateDescription) {
+                                  return InkWell(
+                                    onTap: () {
+                                      descriptionBloc.changeColorByIndex(
+                                          index: index);
+                                    },
+                                    child: Text(
+                                      stateDescription
+                                          .getDataItemByIndex(index: index)
+                                          .getDescription(),
+                                      style: TextStyle(
+                                        fontSize: stateDescription
+                                            .getDataItemByIndex(index: index)
+                                            .getDescriptionFontSize(),
+                                        color: stateDescription
+                                            .getDataItemByIndex(index: index)
+                                            .getDescriptionFontColor(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                              trailing: BlocBuilder<CardBloc, CardState>(
+                                bloc: cardBloc,
+                                builder: (context, cardState) {
+                                  return SwitchWidgetWithoutText(
+                                    switchValue: cardState
+                                        .getDataItemByIndex(index: index)
+                                        .isCardActivated(),
+                                    onChanged: (value) {
+                                      cardBloc.changeColorByIndex(index: index);
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
                 },
               ),
             ),
