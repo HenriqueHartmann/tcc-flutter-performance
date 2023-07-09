@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
+import 'package:provider/provider.dart';
+import 'package:tcc_performance_app/src/features/provider/card_provider.dart';
+import 'package:tcc_performance_app/src/features/provider/screen_provider.dart';
+import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class MainProvider extends StatefulWidget {
   const MainProvider({super.key});
@@ -9,11 +12,19 @@ class MainProvider extends StatefulWidget {
 }
 
 class _MainProviderState extends State<MainProvider> {
+  late ItemListModel itemList;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarWidget(title: 'Provider',),
-      body: Container(),
+    itemList = ModalRoute.of(context)!.settings.arguments as ItemListModel;
+
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => CardProvider(data: itemList),
+        ),
+      ],
+      child: ScreenProvider(),
     );
   }
 }
