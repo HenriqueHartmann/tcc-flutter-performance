@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class DescriptionState {
@@ -37,5 +38,17 @@ class DescriptionState {
 
   bool getSwitchAllFontSize() {
     return switchAllFontSize;
+  }
+
+  String getDescriptionValueByIndex({required int index}) {
+    return getData().getDataByIndex(index).getDescription();
+  }
+
+  Color getDescriptionColorByIndex({required int index}) {
+    return getData().getDataByIndex(index).getDescriptionFontColor();
+  }
+
+  double getDescriptionFontSizeByIndex({required int index}) {
+    return getData().getDataByIndex(index).getDescriptionFontSize();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class CardState {
@@ -9,7 +10,7 @@ class CardState {
     this.switchAllColors = false,
   });
 
-    CardState copyWith({
+  CardState copyWith({
     ItemListModel? data,
     bool? switchAllColors,
     bool? switchAllFontSize,
@@ -22,7 +23,7 @@ class CardState {
 
   ItemListModel getData() {
     return data;
-  } 
+  }
 
   ItemModel getDataItemByIndex({required int index}) {
     return getData().getDataByIndex(index);
@@ -30,5 +31,13 @@ class CardState {
 
   bool getSwitchAllColors() {
     return switchAllColors;
+  }
+
+  bool getSwitchValueByIndex({required int index}) {
+    return getData().getDataByIndex(index).isCardActivated();
+  }
+
+  Color getCardBackgroundByIndex({required int index}) {
+    return getData().getDataByIndex(index).getCardBackgroundColor();
   }
 }

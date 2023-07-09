@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class TitleState {
@@ -11,7 +12,7 @@ class TitleState {
     this.switchAllFontSize = false,
   });
 
-    TitleState copyWith({
+  TitleState copyWith({
     ItemListModel? data,
     bool? switchAllColors,
     bool? switchAllFontSize,
@@ -25,7 +26,7 @@ class TitleState {
 
   ItemListModel getData() {
     return data;
-  } 
+  }
 
   ItemModel getDataItemByIndex({required int index}) {
     return getData().getDataByIndex(index);
@@ -37,5 +38,17 @@ class TitleState {
 
   bool getSwitchAllFontSize() {
     return switchAllFontSize;
+  }
+
+  String getTitleValueByIndex({required int index}) {
+    return getData().getDataByIndex(index).getTitle();
+  }
+
+  Color getTitleColorByIndex({required int index}) {
+    return getData().getDataByIndex(index).getTitleFontColor();
+  }
+
+  double getTitleFontSizeByIndex({required int index}) {
+    return getData().getDataByIndex(index).getTitleFontSize();
   }
 }

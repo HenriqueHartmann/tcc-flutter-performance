@@ -152,9 +152,7 @@ class _MainBlocState extends State<MainBloc> {
                     bloc: cardBloc,
                     builder: (context, cardState) {
                       return Card(
-                        color: cardState
-                            .getDataItemByIndex(index: index)
-                            .getCardBackgroundColor(),
+                        color: cardState.getCardBackgroundByIndex(index: index),
                         child: Column(
                           children: [
                             ListTile(
@@ -168,16 +166,14 @@ class _MainBlocState extends State<MainBloc> {
                                           index: index);
                                     },
                                     child: Text(
-                                      stateTitle
-                                          .getDataItemByIndex(index: index)
-                                          .getTitle(),
+                                      stateTitle.getTitleValueByIndex(
+                                          index: index),
                                       style: TextStyle(
-                                        fontSize: stateTitle
-                                            .getDataItemByIndex(index: index)
-                                            .getTitleFontSize(),
-                                        color: stateTitle
-                                            .getDataItemByIndex(index: index)
-                                            .getTitleFontColor(),
+                                        fontSize:
+                                            stateTitle.getTitleFontSizeByIndex(
+                                                index: index),
+                                        color: stateTitle.getTitleColorByIndex(
+                                            index: index),
                                       ),
                                     ),
                                   );
@@ -194,31 +190,25 @@ class _MainBlocState extends State<MainBloc> {
                                     },
                                     child: Text(
                                       stateDescription
-                                          .getDataItemByIndex(index: index)
-                                          .getDescription(),
+                                          .getDescriptionValueByIndex(
+                                              index: index),
                                       style: TextStyle(
                                         fontSize: stateDescription
-                                            .getDataItemByIndex(index: index)
-                                            .getDescriptionFontSize(),
+                                            .getDescriptionFontSizeByIndex(
+                                                index: index),
                                         color: stateDescription
-                                            .getDataItemByIndex(index: index)
-                                            .getDescriptionFontColor(),
+                                            .getDescriptionColorByIndex(
+                                                index: index),
                                       ),
                                     ),
                                   );
                                 },
                               ),
-                              trailing: BlocBuilder<CardBloc, CardState>(
-                                bloc: cardBloc,
-                                builder: (context, cardState) {
-                                  return SwitchWidgetWithoutText(
-                                    switchValue: cardState
-                                        .getDataItemByIndex(index: index)
-                                        .isCardActivated(),
-                                    onChanged: (value) {
-                                      cardBloc.changeColorByIndex(index: index);
-                                    },
-                                  );
+                              trailing: SwitchWidgetWithoutText(
+                                switchValue: cardState.getSwitchValueByIndex(
+                                    index: index),
+                                onChanged: (value) {
+                                  cardBloc.changeColorByIndex(index: index);
                                 },
                               ),
                             ),
