@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tcc_performance_app/src/features/provider/card_provider.dart';
+import 'package:tcc_performance_app/src/features/provider/description_provider.dart';
 import 'package:tcc_performance_app/src/features/provider/screen_provider.dart';
+import 'package:tcc_performance_app/src/features/provider/title_provider.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class MainProvider extends StatefulWidget {
@@ -22,6 +24,12 @@ class _MainProviderState extends State<MainProvider> {
       providers: [
         ChangeNotifierProvider(
           create: (_) => CardProvider(data: itemList),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TitleProvider(data: itemList),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DescriptionProvider(data: itemList),
         ),
       ],
       child: ScreenProvider(),

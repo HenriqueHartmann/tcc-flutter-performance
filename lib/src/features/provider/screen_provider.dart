@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tcc_performance_app/src/features/provider/card_provider.dart';
+import 'package:tcc_performance_app/src/features/provider/description_provider.dart';
+import 'package:tcc_performance_app/src/features/provider/title_provider.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget_without_text.dart';
@@ -40,92 +42,94 @@ class _ScreenProviderState extends State<ScreenProvider> {
               height: 8.0,
             ),
             Consumer<CardProvider>(
-              builder: (context, value, child) {
+              builder: (context, cardProvider, child) {
                 return SwitchWidget(
                   title: 'Change colors',
-                  switchValue: value.getSwitchAllColors(),
-                  onChanged: (value) {
-                    context.read<CardProvider>().changeAllColors();
+                  switchValue: cardProvider.getSwitchAllColors(),
+                  onChanged: (onChangedValue) {
+                    cardProvider.changeAllColors();
                   },
                 );
               },
             ),
             Row(
               children: [
-                // Expanded(
-                //   flex: 1,
-                //   child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       Text(
-                //         'Title',
-                //         textScaleFactor: 1.2,
-                //       ),
-                //       SizedBox(
-                //         height: 8.0,
-                //       ),
-                //       BlocBuilder<TitleBloc, TitleState>(
-                //         bloc: titleBloc,
-                //         builder: (context, state) {
-                //           return Column(
-                //             children: [
-                //               SwitchWidget(
-                //                 title: 'Change colors',
-                //                 switchValue: state.getSwitchAllColors(),
-                //                 onChanged: (value) {
-                //                   titleBloc.changeAllColors();
-                //                 },
-                //               ),
-                //               SwitchWidget(
-                //                 title: 'Change font size',
-                //                 switchValue: state.getSwitchAllFontSize(),
-                //                 onChanged: (value) {
-                //                   titleBloc.changeAllFontSizes();
-                //                 },
-                //               ),
-                //             ],
-                //           );
-                //         },
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // Expanded(
-                //   child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       Text(
-                //         'Description',
-                //         textScaleFactor: 1.2,
-                //       ),
-                //       SizedBox(
-                //         height: 8.0,
-                //       ),
-                //       BlocBuilder<DescriptionBloc, DescriptionState>(
-                //           bloc: descriptionBloc,
-                //           builder: (context, state) {
-                //             return Column(
-                //               children: [
-                //                 SwitchWidget(
-                //                   title: 'Change colors',
-                //                   switchValue: state.getSwitchAllColors(),
-                //                   onChanged: (value) {
-                //                     descriptionBloc.changeAllColors();
-                //                   },
-                //                 ),
-                //                 SwitchWidget(
-                //                   title: 'Change font size',
-                //                   switchValue: state.getSwitchAllFontSize(),
-                //                   onChanged: (value) {
-                //                     descriptionBloc.changeAllFontSizes();
-                //                   },
-                //                 ),
-                //               ],
-                //             );
-                //           }),
-                //     ],
-                //   ),
-                // ),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Title',
+                        textScaleFactor: 1.2,
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Consumer<TitleProvider>(
+                        builder: (context, titleProvider, child) {
+                          return Column(
+                            children: [
+                              SwitchWidget(
+                                title: 'Change colors',
+                                switchValue: titleProvider.getSwitchAllColors(),
+                                onChanged: (value) {
+                                  titleProvider.changeAllColors();
+                                },
+                              ),
+                              SwitchWidget(
+                                title: 'Change font size',
+                                switchValue:
+                                    titleProvider.getSwitchAllFontSizes(),
+                                onChanged: (value) {
+                                  titleProvider.changeAllFontSizes();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Description',
+                        textScaleFactor: 1.2,
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Consumer<DescriptionProvider>(
+                        builder: (context, descriptionProvider, child) {
+                          return Column(
+                            children: [
+                              SwitchWidget(
+                                title: 'Change colors',
+                                switchValue:
+                                    descriptionProvider.getSwitchAllColors(),
+                                onChanged: (value) {
+                                  descriptionProvider.changeAllColors();
+                                },
+                              ),
+                              SwitchWidget(
+                                title: 'Change font size',
+                                switchValue:
+                                    descriptionProvider.getSwitchAllFontSizes(),
+                                onChanged: (value) {
+                                  descriptionProvider.changeAllFontSizes();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 16.0),
@@ -135,69 +139,60 @@ class _ScreenProviderState extends State<ScreenProvider> {
                 itemCount: itemList.getData().length,
                 itemBuilder: (context, index) {
                   return Consumer<CardProvider>(
-                    builder: (context, cardValue, child) {
+                    builder: (context, cardProvider, child) {
                       return Card(
-                        color: cardValue.getCardBackgroundByIndex(index: index),
+                        color:
+                            cardProvider.getCardBackgroundByIndex(index: index),
                         child: Column(
                           children: [
                             ListTile(
-                              // title: BlocBuilder<TitleBloc, TitleState>(
-                              //   bloc: titleBloc,
-                              //   builder: (context, stateTitle) {
-                              //     log('\nINDEX: $index BUILDED');
-                              //     return InkWell(
-                              //       onTap: () {
-                              //         titleBloc.changeColorByIndex(
-                              //             index: index);
-                              //       },
-                              //       child: Text(
-                              //         stateTitle
-                              //             .getDataItemByIndex(index: index)
-                              //             .getTitle(),
-                              //         style: TextStyle(
-                              //           fontSize: stateTitle
-                              //               .getDataItemByIndex(index: index)
-                              //               .getTitleFontSize(),
-                              //           color: stateTitle
-                              //               .getDataItemByIndex(index: index)
-                              //               .getTitleFontColor(),
-                              //         ),
-                              //       ),
-                              //     );
-                              //   },
-                              // ),
-                              // subtitle: BlocBuilder<DescriptionBloc,
-                              //     DescriptionState>(
-                              //   bloc: descriptionBloc,
-                              //   builder: (context, stateDescription) {
-                              //     return InkWell(
-                              //       onTap: () {
-                              //         descriptionBloc.changeColorByIndex(
-                              //             index: index);
-                              //       },
-                              //       child: Text(
-                              //         stateDescription
-                              //             .getDataItemByIndex(index: index)
-                              //             .getDescription(),
-                              //         style: TextStyle(
-                              //           fontSize: stateDescription
-                              //               .getDataItemByIndex(index: index)
-                              //               .getDescriptionFontSize(),
-                              //           color: stateDescription
-                              //               .getDataItemByIndex(index: index)
-                              //               .getDescriptionFontColor(),
-                              //         ),
-                              //       ),
-                              //     );
-                              //   },
-                              // ),
+                              title: Consumer<TitleProvider>(
+                                builder: (context, titleProvider, child) {
+                                  return InkWell(
+                                    onTap: () {
+                                      titleProvider.changeColorByIndex(
+                                        index: index,
+                                      );
+                                    },
+                                    child: Text(
+                                      titleProvider.getValueByIndex(
+                                          index: index),
+                                      style: TextStyle(
+                                        fontSize: titleProvider
+                                            .getFontSizeByIndex(index: index),
+                                        color: titleProvider.getColorByIndex(
+                                            index: index),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                              subtitle: Consumer<DescriptionProvider>(
+                                builder: (context, descriptionProvider, child) {
+                                  return InkWell(
+                                    onTap: () {
+                                      descriptionProvider.changeColorByIndex(
+                                        index: index,
+                                      );
+                                    },
+                                    child: Text(
+                                      descriptionProvider.getValueByIndex(
+                                          index: index),
+                                      style: TextStyle(
+                                        fontSize: descriptionProvider
+                                            .getFontSizeByIndex(index: index),
+                                        color: descriptionProvider
+                                            .getColorByIndex(index: index),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
                               trailing: SwitchWidgetWithoutText(
-                                switchValue: cardValue.getSwitchValueByIndex(
+                                switchValue: cardProvider.getSwitchValueByIndex(
                                     index: index),
-                                onChanged: (value) {
-                                  context
-                                      .read<CardProvider>()
-                                      .changeColorByIndex(index: index);
+                                onChanged: (onChangedValue) {
+                                  cardProvider.changeColorByIndex(index: index);
                                 },
                               ),
                             ),

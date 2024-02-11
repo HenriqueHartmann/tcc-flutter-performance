@@ -116,27 +116,28 @@ class _MainBlocState extends State<MainBloc> {
                         height: 8.0,
                       ),
                       BlocBuilder<DescriptionBloc, DescriptionState>(
-                          bloc: descriptionBloc,
-                          builder: (context, state) {
-                            return Column(
-                              children: [
-                                SwitchWidget(
-                                  title: 'Change colors',
-                                  switchValue: state.getSwitchAllColors(),
-                                  onChanged: (value) {
-                                    descriptionBloc.changeAllColors();
-                                  },
-                                ),
-                                SwitchWidget(
-                                  title: 'Change font size',
-                                  switchValue: state.getSwitchAllFontSize(),
-                                  onChanged: (value) {
-                                    descriptionBloc.changeAllFontSizes();
-                                  },
-                                ),
-                              ],
-                            );
-                          }),
+                        bloc: descriptionBloc,
+                        builder: (context, state) {
+                          return Column(
+                            children: [
+                              SwitchWidget(
+                                title: 'Change colors',
+                                switchValue: state.getSwitchAllColors(),
+                                onChanged: (value) {
+                                  descriptionBloc.changeAllColors();
+                                },
+                              ),
+                              SwitchWidget(
+                                title: 'Change font size',
+                                switchValue: state.getSwitchAllFontSize(),
+                                onChanged: (value) {
+                                  descriptionBloc.changeAllFontSizes();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -163,7 +164,8 @@ class _MainBlocState extends State<MainBloc> {
                                   return InkWell(
                                     onTap: () {
                                       titleBloc.changeColorByIndex(
-                                          index: index);
+                                        index: index,
+                                      );
                                     },
                                     child: Text(
                                       stateTitle.getTitleValueByIndex(
@@ -186,7 +188,8 @@ class _MainBlocState extends State<MainBloc> {
                                   return InkWell(
                                     onTap: () {
                                       descriptionBloc.changeColorByIndex(
-                                          index: index);
+                                        index: index,
+                                      );
                                     },
                                     child: Text(
                                       stateDescription
