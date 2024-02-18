@@ -31,6 +31,7 @@ class _MainSetStateState extends State<MainSetState> {
     itemList = ModalRoute.of(context)!.settings.arguments as ItemListModel;
 
     return Scaffold(
+      key: const Key('setStatePage'),
       appBar: AppBarWidget(
         title: 'SetState',
       ),

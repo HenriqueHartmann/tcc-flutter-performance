@@ -23,6 +23,7 @@ class _ScreenProviderState extends State<ScreenProvider> {
     itemList = ModalRoute.of(context)!.settings.arguments as ItemListModel;
 
     return Scaffold(
+      key: const Key('providerPage'),
       appBar: AppBarWidget(
         title: 'Provider',
       ),

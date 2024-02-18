@@ -34,6 +34,7 @@ class _MainBlocState extends State<MainBloc> {
     cardBloc = CardBloc(data: itemList);
 
     return Scaffold(
+      key: const Key('blocPage'),
       appBar: AppBarWidget(
         title: 'Bloc',
       ),

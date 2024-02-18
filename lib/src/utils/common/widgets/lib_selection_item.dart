@@ -24,6 +24,7 @@ class _LibSelectionItemState extends State<LibSelectionItem> {
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
+        key: const Key('libSelectionItem'),
         highlightColor: Colors.amber.withOpacity(0.2),
         splashColor: Colors.amber,
         onTap: () {
