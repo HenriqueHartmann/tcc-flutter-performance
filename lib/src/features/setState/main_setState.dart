@@ -12,10 +12,10 @@ class MainSetState extends StatefulWidget {
   });
 
   @override
-  State<MainSetState> createState() => _MainSetStateState();
+  State<MainSetState> createState() => MainSetStateState();
 }
 
-class _MainSetStateState extends State<MainSetState> {
+class MainSetStateState extends State<MainSetState> {
   late ItemListModel itemList;
 
   bool allCardsBackgroundColorSwitch = false;
@@ -51,6 +51,7 @@ class _MainSetStateState extends State<MainSetState> {
               height: 8.0,
             ),
             SwitchWidget(
+              key: const Key('changeAllCardColors'),
               title: 'Change colors',
               switchValue: allCardsBackgroundColorSwitch,
               onChanged: (value) {
