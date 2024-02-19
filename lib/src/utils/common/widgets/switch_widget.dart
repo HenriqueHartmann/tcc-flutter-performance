@@ -21,6 +21,7 @@ class SwitchWidget extends StatelessWidget {
           children: [
             Text(title),
             Switch(
+              key: const Key('switchWidget'),
               activeColor: Colors.red,
               inactiveThumbColor: Colors.blueGrey.shade600,
               inactiveTrackColor: Colors.grey.shade400,
