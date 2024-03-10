@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tcc_performance_app/src/utils/constants/keys_constant.dart';
 
 class SwitchWidget extends StatelessWidget {
   final String title;
@@ -21,7 +22,7 @@ class SwitchWidget extends StatelessWidget {
           children: [
             Text(title),
             Switch(
-              key: const Key('switchWidget'),
+              key: KeysConstant.getSwitchWidgetKey(),
               activeColor: Colors.red,
               inactiveThumbColor: Colors.blueGrey.shade600,
               inactiveTrackColor: Colors.grey.shade400,

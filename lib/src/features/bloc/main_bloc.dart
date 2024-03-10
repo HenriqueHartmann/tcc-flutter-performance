@@ -11,16 +11,17 @@ import 'package:tcc_performance_app/src/features/bloc/title_state.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget_without_text.dart';
+import 'package:tcc_performance_app/src/utils/constants/keys_constant.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class MainBloc extends StatefulWidget {
   const MainBloc({super.key});
 
   @override
-  State<MainBloc> createState() => _MainBlocState();
+  State<MainBloc> createState() => MainBlocState();
 }
 
-class _MainBlocState extends State<MainBloc> {
+class MainBlocState extends State<MainBloc> {
   late ItemListModel itemList;
   late TitleBloc titleBloc;
   late DescriptionBloc descriptionBloc;
@@ -34,7 +35,7 @@ class _MainBlocState extends State<MainBloc> {
     cardBloc = CardBloc(data: itemList);
 
     return Scaffold(
-      key: const Key('blocPage'),
+      key: KeysConstant.getBlocPageKey(),
       appBar: AppBarWidget(
         title: 'Bloc',
       ),
@@ -57,6 +58,7 @@ class _MainBlocState extends State<MainBloc> {
               bloc: cardBloc,
               builder: (context, state) {
                 return SwitchWidget(
+                  key: KeysConstant.getSwitchAllCardColorsKey(),
                   title: 'Change colors',
                   switchValue: state.getSwitchAllColors(),
                   onChanged: (value) {
@@ -85,6 +87,7 @@ class _MainBlocState extends State<MainBloc> {
                           return Column(
                             children: [
                               SwitchWidget(
+                                key: KeysConstant.getSwitchAllTitleColorsKey(),
                                 title: 'Change colors',
                                 switchValue: state.getSwitchAllColors(),
                                 onChanged: (value) {
@@ -92,6 +95,7 @@ class _MainBlocState extends State<MainBloc> {
                                 },
                               ),
                               SwitchWidget(
+                                key: KeysConstant.getSwitchAllTitleFontSizesKey(),
                                 title: 'Change font size',
                                 switchValue: state.getSwitchAllFontSize(),
                                 onChanged: (value) {
@@ -122,6 +126,7 @@ class _MainBlocState extends State<MainBloc> {
                           return Column(
                             children: [
                               SwitchWidget(
+                                key: KeysConstant.getSwitchAllDescriptionColorsKey(),
                                 title: 'Change colors',
                                 switchValue: state.getSwitchAllColors(),
                                 onChanged: (value) {
@@ -129,6 +134,7 @@ class _MainBlocState extends State<MainBloc> {
                                 },
                               ),
                               SwitchWidget(
+                                key: KeysConstant.getSwitchAllDescriptionFontSizesKey(),
                                 title: 'Change font size',
                                 switchValue: state.getSwitchAllFontSize(),
                                 onChanged: (value) {

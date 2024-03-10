@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tcc_performance_app/src/utils/constants/keys_constant.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class LibSelectionItem extends StatefulWidget {
@@ -24,7 +25,7 @@ class _LibSelectionItemState extends State<LibSelectionItem> {
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
-        key: const Key('libSelectionItem'),
+        key: KeysConstant.getLibSelectionItemKey(),
         highlightColor: Colors.amber.withOpacity(0.2),
         splashColor: Colors.amber,
         onTap: () {

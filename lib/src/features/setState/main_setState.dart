@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget_without_text.dart';
+import 'package:tcc_performance_app/src/utils/constants/keys_constant.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class MainSetState extends StatefulWidget {
@@ -31,7 +32,7 @@ class MainSetStateState extends State<MainSetState> {
     itemList = ModalRoute.of(context)!.settings.arguments as ItemListModel;
 
     return Scaffold(
-      key: const Key('setStatePage'),
+      key: KeysConstant.getSetStatePageKey(),
       appBar: AppBarWidget(
         title: 'SetState',
       ),
@@ -51,7 +52,7 @@ class MainSetStateState extends State<MainSetState> {
               height: 8.0,
             ),
             SwitchWidget(
-              key: const Key('changeAllCardColors'),
+              key: KeysConstant.getSwitchAllCardColorsKey(),
               title: 'Change colors',
               switchValue: allCardsBackgroundColorSwitch,
               onChanged: (value) {
@@ -78,6 +79,7 @@ class MainSetStateState extends State<MainSetState> {
                         height: 8.0,
                       ),
                       SwitchWidget(
+                        key: KeysConstant.getSwitchAllTitleColorsKey(),
                         title: 'Change colors',
                         switchValue: allTitleFontColorSwitch,
                         onChanged: (value) {
@@ -89,6 +91,7 @@ class MainSetStateState extends State<MainSetState> {
                         },
                       ),
                       SwitchWidget(
+                        key: KeysConstant.getSwitchAllTitleFontSizesKey(),
                         title: 'Change font size',
                         switchValue: allTitleFontSizeSwitch,
                         onChanged: (value) {
@@ -114,6 +117,7 @@ class MainSetStateState extends State<MainSetState> {
                         height: 8.0,
                       ),
                       SwitchWidget(
+                        key: KeysConstant.getSwitchAllDescriptionColorsKey(),
                         title: 'Change colors',
                         switchValue: allDescriptionFontColorSwitch,
                         onChanged: (value) {
@@ -126,6 +130,7 @@ class MainSetStateState extends State<MainSetState> {
                         },
                       ),
                       SwitchWidget(
+                        key: KeysConstant.getSwitchAllDescriptionFontSizesKey(),
                         title: 'Change font size',
                         switchValue: allDescriptionFontSizeSwitch,
                         onChanged: (value) {

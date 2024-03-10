@@ -4,6 +4,7 @@ import 'package:tcc_performance_app/src/features/provider/main_provider.dart';
 import 'package:tcc_performance_app/src/features/setState/main_setState.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/lib_selection_item.dart';
+import 'package:tcc_performance_app/src/utils/constants/keys_constant.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 void main() {
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Expanded(
                     flex: 1,
                     child: LibSelectionItem(
-                      key: const Key('setStateSelection'),
+                      key: KeysConstant.getSetStateSelectionKey(),
                       imageSrc:
                           'https://www.shihoriobata.com/wp-content/uploads/2020/12/daisy-phone-wallpaper-background2-576x1024.jpg',
                       title: 'SetState',
@@ -65,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Expanded(
                     flex: 1,
                     child: LibSelectionItem(
-                      key: const Key('providerSelection'),
+                      key: KeysConstant.getProviderSelectionKey(),
                       imageSrc:
                           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfqYzstsYvq2OUkTbG7QXqWjs6Sd5f1OYFiEcXE6z92VMjFnfyLP_VQHGOk764btZhgqI&usqp=CAU',
                       title: 'Provider',
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Expanded(
                     flex: 1,
                     child: LibSelectionItem(
-                      key: const Key('blocSelection'),
+                      key: KeysConstant.getBlocSelectionKey(),
                       imageSrc:
                           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLnVDA7fm4holbOOF70MM-KBsdT_1Y50VuB8t4reWmEMrbWYB1h3qNcLDP1zB79UJSgUM&usqp=CAU',
                       title: 'Bloc',
