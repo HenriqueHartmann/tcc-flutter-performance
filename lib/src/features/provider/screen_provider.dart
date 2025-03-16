@@ -6,16 +6,17 @@ import 'package:tcc_performance_app/src/features/provider/title_provider.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/app_bar_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget.dart';
 import 'package:tcc_performance_app/src/utils/common/widgets/switch_widget_without_text.dart';
+import 'package:tcc_performance_app/src/utils/constants/keys_constant.dart';
 import 'package:tcc_performance_app/src/utils/data/item_client.dart';
 
 class ScreenProvider extends StatefulWidget {
   const ScreenProvider({super.key});
 
   @override
-  State<ScreenProvider> createState() => _ScreenProviderState();
+  State<ScreenProvider> createState() => ScreenProviderState();
 }
 
-class _ScreenProviderState extends State<ScreenProvider> {
+class ScreenProviderState extends State<ScreenProvider> {
   late ItemListModel itemList;
 
   @override
@@ -23,7 +24,7 @@ class _ScreenProviderState extends State<ScreenProvider> {
     itemList = ModalRoute.of(context)!.settings.arguments as ItemListModel;
 
     return Scaffold(
-      key: const Key('providerPage'),
+      key: KeysConstant.getProviderPageKey(),
       appBar: AppBarWidget(
         title: 'Provider',
       ),
@@ -45,6 +46,7 @@ class _ScreenProviderState extends State<ScreenProvider> {
             Consumer<CardProvider>(
               builder: (context, cardProvider, child) {
                 return SwitchWidget(
+                  key: KeysConstant.getSwitchAllCardColorsKey(),
                   title: 'Change colors',
                   switchValue: cardProvider.getSwitchAllColors(),
                   onChanged: (onChangedValue) {
@@ -72,6 +74,7 @@ class _ScreenProviderState extends State<ScreenProvider> {
                           return Column(
                             children: [
                               SwitchWidget(
+                                key: KeysConstant.getSwitchAllTitleColorsKey(),
                                 title: 'Change colors',
                                 switchValue: titleProvider.getSwitchAllColors(),
                                 onChanged: (value) {
@@ -79,6 +82,7 @@ class _ScreenProviderState extends State<ScreenProvider> {
                                 },
                               ),
                               SwitchWidget(
+                                key: KeysConstant.getSwitchAllTitleFontSizesKey(),
                                 title: 'Change font size',
                                 switchValue:
                                     titleProvider.getSwitchAllFontSizes(),
@@ -109,6 +113,7 @@ class _ScreenProviderState extends State<ScreenProvider> {
                           return Column(
                             children: [
                               SwitchWidget(
+                                key: KeysConstant.getSwitchAllDescriptionColorsKey(),
                                 title: 'Change colors',
                                 switchValue:
                                     descriptionProvider.getSwitchAllColors(),
@@ -117,6 +122,7 @@ class _ScreenProviderState extends State<ScreenProvider> {
                                 },
                               ),
                               SwitchWidget(
+                                key: KeysConstant.getSwitchAllDescriptionFontSizesKey(),
                                 title: 'Change font size',
                                 switchValue:
                                     descriptionProvider.getSwitchAllFontSizes(),
